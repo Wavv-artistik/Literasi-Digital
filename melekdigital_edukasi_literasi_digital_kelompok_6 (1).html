@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MelekDigital • Edukasi Literasi Digital Kelompok 6</title>
+  <meta name="description" content="Portal Edukasi Literasi Digital Masyarakat: Bijak Paylater & Pinjol, Waspada Link Phishing, dan Cek Fakta Video AI." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            evening: '#192231',
+            stormy: '#494E6B',
+            sunset: '#985E6D',
+            cloud: '#98878F',
+            twilight: '#222D40',
+            goldfact: '#F4C430'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom atmospheric styling matching the user's moodboard palette */
+    body {
+      background-color: #192231;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    .hero-atmosphere {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(152, 94, 109, 0.32) 0%, rgba(25, 34, 49, 0) 48%),
+        radial-gradient(circle at 15% 75%, rgba(73, 78, 107, 0.45) 0%, rgba(25, 34, 49, 0) 55%),
+        linear-gradient(165deg, #192231 0%, #232E44 52%, #313852 100%);
+    }
+
+    .glass-card {
+      background: rgba(34, 45, 64, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(152, 135, 143, 0.25);
+    }
+
+    .stormy-card {
+      background: linear-gradient(145deg, rgba(73, 78, 107, 0.48), rgba(25, 34, 49, 0.92));
+      border: 1px solid rgba(152, 135, 143, 0.28);
+    }
+
+    /* Pulse ring for interactive phishing hotspots */
+    @keyframes hotspotPulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.75); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    .hotspot-btn {
+      animation: hotspotPulse 2s infinite;
+    }
+
+    /* Custom range slider styling */
+    input[type="range"] {
+      accent-color: #985E6D;
+    }
+
+    /* Typing indicator animation for Bang Digi AI */
+    @keyframes digiBounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.45; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .digi-dot {
+      animation: digiBounce 1.4s infinite ease-in-out both;
+    }
+    .digi-dot:nth-child(1) { animation-delay: -0.32s; }
+    .digi-dot:nth-child(2) { animation-delay: -0.16s; }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-sunset selection:text-white">
+
+  <!-- ==================== STICKY NAVIGATION ==================== -->
+  <header class="sticky top-0 z-40 border-b border-cloud/20 bg-evening/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+      <!-- Brand -->
+      <a href="#beranda" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sunset to-stormy flex items-center justify-center shadow-lg border border-cloud/30">
+          <!-- Shield Check SVG -->
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-bold text-base sm:text-lg tracking-tight text-white block leading-none">
+            Melek<span class="text-sunset">Digital</span>
+          </span>
+          <span class="text-[11px] text-cloud font-medium tracking-wide">Projek Kelompok 6</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#beranda" class="hover:text-white transition">Beranda</a>
+        <a href="#data-fakta" class="hover:text-white transition">Data Fakta</a>
+        <a href="#modul-edukasi" class="hover:text-white transition">3 Modul &amp; Simulasi</a>
+        <a href="#pojok-darurat" class="hover:text-white transition">Pojok Darurat</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <button onclick="openModal('qrModal')" class="p-2.5 sm:px-3.5 sm:py-2 rounded-xl bg-stormy/50 hover:bg-stormy text-slate-200 border border-cloud/30 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition" title="Tampilkan QR Poster Lapangan">
+          <svg class="w-4 h-4 text-goldfact" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 14.625h2.25v2.25H13.5v-2.25zm4.5 0h2.25v2.25H18v-2.25zm-4.5 4.5h2.25v2.25H13.5v-2.25zm4.5 0h2.25v2.25H18v-2.25z" />
+          </svg>
+          <span class="hidden sm:inline">QR Lapangan</span>
+        </button>
+
+        <button onclick="openModal('quizModal')" class="px-3.5 py-2 rounded-xl bg-sunset hover:bg-sunset/90 text-white text-xs sm:text-sm font-semibold shadow-md transition flex items-center gap-1.5">
+          <span>Cek Keamananmu</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="beranda" class="hero-atmosphere relative border-b border-cloud/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 md:pt-16 md:pb-20">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <!-- Hero Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stormy/50 border border-cloud/30 text-xs font-semibold text-slate-200">
+            <span class="w-2 h-2 rounded-full bg-goldfact animate-pulse"></span>
+            <span>KAMPANYE LITERASI DIGITAL MASYARAKAT • KELOMPOK 6</span>
+          </div>
+
+          <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            Cerdas di Dunia Digital: <span class="text-transparent bg-clip-text bg-gradient-to-r from-goldfact via-amber-200 to-sunset">Lindungi Dompet, Data, &amp; Keluarga</span> dari Penipuan.
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+            Tiga ancaman digital paling sering menyasar warga sehari-hari: jebakan <strong>Paylater &amp; Pinjol Ilegal</strong>, pencurian saldo lewat <strong>Link Phishing (.APK)</strong>, dan hoaks rekayasa <strong>Video AI (Deepfake)</strong>. Pahami cirinya lewat simulasi dan infografis praktis di bawah ini.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#modul-edukasi" class="px-6 py-3.5 rounded-xl bg-sunset hover:bg-sunset/90 text-white font-semibold text-sm sm:text-base shadow-lg shadow-sunset/20 transition flex items-center gap-2">
+              <span>Mulai Belajar 3 Modul</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+              </svg>
+            </a>
+
+            <button onclick="openModal('quizModal')" class="px-6 py-3.5 rounded-xl bg-stormy/60 hover:bg-stormy text-white font-semibold text-sm sm:text-base border border-cloud/30 transition">
+              Ikuti Kuis 1 Menit
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Visual Summary Card (3 Pillars Preview) -->
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-2xl p-5 sm:p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-cloud/20 pb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-cloud">3 Fokus Edukasi Lapangan</span>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-sunset/30 text-rose-200 font-semibold">Pilih Topik</span>
+            </div>
+
+            <!-- Quick Topic Card 1 -->
+            <button onclick="selectModule('pinjol', true)" class="w-full text-left p-4 rounded-xl bg-evening/80 hover:bg-stormy/50 border border-cloud/20 hover:border-sunset transition flex items-start gap-3.5 group">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-goldfact flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display font-bold text-white text-sm sm:text-base group-hover:text-goldfact transition">1. Bijak Paylater &amp; Pinjol</h3>
+                <p class="text-xs text-slate-300 mt-1">Hitung batas aman cicilan 30% &amp; bedakan legal OJK vs ilegal.</p>
+              </div>
+              <span class="text-cloud group-hover:text-white self-center">→</span>
+            </button>
+
+            <!-- Quick Topic Card 2 -->
+            <button onclick="selectModule('phishing', true)" class="w-full text-left p-4 rounded-xl bg-evening/80 hover:bg-stormy/50 border border-cloud/20 hover:border-sunset transition flex items-start gap-3.5 group">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-300 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display font-bold text-white text-sm sm:text-base group-hover:text-rose-300 transition">2. Bahaya Link Phishing &amp; .APK</h3>
+                <p class="text-xs text-slate-300 mt-1">Simulasi bedah chat penipuan resi, undangan, &amp; blokir rekening.</p>
+              </div>
+              <span class="text-cloud group-hover:text-white self-center">→</span>
+            </button>
+
+            <!-- Quick Topic Card 3 -->
+            <button onclick="selectModule('videoai', true)" class="w-full text-left p-4 rounded-xl bg-evening/80 hover:bg-stormy/50 border border-cloud/20 hover:border-sunset transition flex items-start gap-3.5 group">
+              <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display font-bold text-white text-sm sm:text-base group-hover:text-sky-300 transition">3. Cek Fakta Video AI (Deepfake)</h3>
+                <p class="text-xs text-slate-300 mt-1">Latih mata kenali wajah &amp; suara rekayasa AI sebelum *sharing*.</p>
+              </div>
+              <span class="text-cloud group-hover:text-white self-center">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NATIONAL DATA FACTS SECTION ==================== -->
+  <section id="data-fakta" class="py-12 sm:py-16 bg-evening border-b border-cloud/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-sunset">Mengapa Ini Mendesak?</span>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-2">Data Fakta Ancaman Digital di Indonesia</h2>
+        <p class="text-sm sm:text-base text-slate-300 mt-2">
+          Angka resmi dari lembaga pengawas nasional menunjukkan risiko keuangan dan manipulasi informasi kini ada di genggaman setiap pengguna HP.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- Fact Card 1 -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-goldfact text-xs font-bold">Paylater &amp; Pinjol</span>
+              <span class="text-xs text-cloud">OJK &amp; Satgas PASTI</span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-goldfact">Rp13,54 T</div>
+            <p class="text-sm text-white font-semibold mt-1">Pembiayaan BNPL Perusahaan Pembiayaan (Sept 2026)</p>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Di saat bersamaan, Satgas PASTI telah menghentikan <strong class="text-white">1.199 entitas pinjol ilegal</strong> sepanjang Jan–Sept 2026 yang rawan menyebar data pribadi warga.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cloud/20 text-[11px] text-cloud">
+            Sumber: OJK RDKB Okt 2026; Satgas PASTI, 27 Okt 2026.
+          </div>
+        </div>
+
+        <!-- Fact Card 2 -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold">Phishing &amp; Penipuan</span>
+              <span class="text-xs text-cloud">IASC &amp; Kemkomdigi</span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-rose-300">432 Ribu+</div>
+            <p class="text-sm text-white font-semibold mt-1">Laporan Penipuan ke Indonesia Anti-Scam Centre</p>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Tercatat sejak Nov 2024 hingga awal 2026, ditambah <strong class="text-white">30 ribu+ aduan penyalahgunaan nomor seluler</strong> hingga 16 Juli 2026 melalui modus tautan &amp; file APK.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cloud/20 text-[11px] text-cloud">
+            Sumber: Indonesia Anti-Scam Centre (IASC) &amp; Kemkomdigi, 2026.
+          </div>
+        </div>
+
+        <!-- Fact Card 3 -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold">Video AI &amp; Hoaks</span>
+              <span class="text-xs text-cloud">Mafindo</span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-sky-300">1.593 Hoaks</div>
+            <p class="text-sm text-white font-semibold mt-1">Dipetakan Mafindo (21 Okt 2024 – 19 Okt 2025)</p>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Sebanyak <strong class="text-white">58,2% hoaks</strong> pada pemetaan Pemilu 2024 berbentuk gabungan teks dan video, sehingga warga mudah terkecoh oleh rekayasa visual &amp; suara AI.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cloud/20 text-[11px] text-cloud">
+            Sumber: Mafindo, Pemetaan Hoaks 2024–2025 &amp; Pemilu 2024.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE 3-MODULE HUB ==================== -->
+  <section id="modul-edukasi" class="py-12 sm:py-16 bg-gradient-to-b from-evening via-[#1E283A] to-evening border-b border-cloud/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <!-- Section Heading -->
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-bold uppercase tracking-widest text-sunset">Modul Interaktif &amp; Infografis</span>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-2">Pilih Topik Edukasi</h2>
+        <p class="text-sm sm:text-base text-slate-300 mt-2">
+          Setiap modul dilengkapi <strong>simulasi langsung</strong> agar mudah dipahami dan <strong>infografis lengkap</strong> yang bisa disimpan ke galeri HP untuk dibagikan ke grup keluarga.
+        </p>
+      </div>
+
+      <!-- Module Selector Tabs -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-4xl mx-auto mb-10" role="tablist">
+        <button id="tab-pinjol" onclick="selectModule('pinjol', false)" class="module-tab p-3.5 rounded-xl font-display font-bold text-sm sm:text-base border transition flex items-center justify-center gap-2 bg-sunset text-white border-sunset shadow-lg">
+          <span>1. Paylater &amp; Pinjol</span>
+        </button>
+
+        <button id="tab-phishing" onclick="selectModule('phishing', false)" class="module-tab p-3.5 rounded-xl font-display font-bold text-sm sm:text-base border transition flex items-center justify-center gap-2 bg-stormy/40 text-slate-300 border-cloud/30 hover:bg-stormy/70">
+          <span>2. Link Phishing &amp; Data</span>
+        </button>
+
+        <button id="tab-videoai" onclick="selectModule('videoai', false)" class="module-tab p-3.5 rounded-xl font-display font-bold text-sm sm:text-base border transition flex items-center justify-center gap-2 bg-stormy/40 text-slate-300 border-cloud/30 hover:bg-stormy/70">
+          <span>3. Hoaks Video AI</span>
+        </button>
+      </div>
+
+      <!-- ==================== MODULE 1 CONTENT: PAYLATER & PINJOL ==================== -->
+      <div id="panel-pinjol" class="module-panel grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Column: Interactive Simulator + Practical Guide -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="glass-card rounded-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-goldfact text-xs font-bold">Simulasi Interaktif 1</span>
+              <span class="text-xs text-cloud">Aturan Rasio Utang 30%</span>
+            </div>
+
+            <div>
+              <h3 class="font-display font-bold text-xl text-white">Kalkulator Batas Aman Cicilan</h3>
+              <p class="text-sm text-slate-300 mt-1">
+                Cek apakah total cicilan <em>paylater</em> atau pinjamanmu masih dalam batas aman (maksimal <strong>30% dari penghasilan bersih bulanan</strong>).
+              </p>
+            </div>
+
+            <!-- Income Input -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs sm:text-sm">
+                <label for="incomeRange" class="text-slate-200 font-medium">Penghasilan Bersih per Bulan:</label>
+                <span id="incomeDisplay" class="font-bold text-goldfact">Rp 3.500.000</span>
+              </div>
+              <input id="incomeRange" type="range" min="1000000" max="15000000" step="250000" value="3500000" oninput="calculateDebt()" class="w-full cursor-pointer" />
+              <div class="flex justify-between text-[11px] text-cloud">
+                <span>Rp 1 Juta</span>
+                <span>Rp 15 Juta</span>
+              </div>
+            </div>
+
+            <!-- Debt Input -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs sm:text-sm">
+                <label for="debtRange" class="text-slate-200 font-medium">Total Cicilan Paylater / Pinjol / Kredit:</label>
+                <span id="debtDisplay" class="font-bold text-white">Rp 900.000</span>
+              </div>
+              <input id="debtRange" type="range" min="0" max="8000000" step="100000" value="900000" oninput="calculateDebt()" class="w-full cursor-pointer" />
+              <div class="flex justify-between text-[11px] text-cloud">
+                <span>Rp 0</span>
+                <span>Rp 8 Juta</span>
+              </div>
+            </div>
+
+            <!-- Result Box -->
+            <div id="debtResultBox" class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 space-y-2">
+              <div class="flex items-center justify-between">
+                <span id="debtStatusBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">ZONA AMAN (25,7%)</span>
+                <span class="text-xs text-slate-300">Batas Maks: <strong id="maxSafeDisplay" class="text-white">Rp 1.050.000</strong></span>
+              </div>
+              <p id="debtAdviceText" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Cicilanmu masih di bawah batas 30%. Pastikan dipakai hanya untuk kebutuhan produktif/mendesak dan selalu lunasi tepat waktu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Checklist Card -->
+          <div class="stormy-card rounded-2xl p-6 space-y-3">
+            <h4 class="font-display font-bold text-base text-white">Ingat Prinsip 2L Sebelum Klik Pinjam:</h4>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-200">
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Legal:</strong> Pastikan terdaftar di OJK lewat WhatsApp resmi <strong>081-157-157-157</strong>.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Logis:</strong> Bunga transparan dan tidak meminta izin akses <strong>Kontak &amp; Galeri Foto</strong> (hanya CAMILAN: Camera, Microphone, Location).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Infographic Showcase -->
+        <div class="lg:col-span-6">
+          <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-xs font-bold text-goldfact uppercase tracking-wider">Infografis Modul 1</span>
+                <h3 class="font-display font-bold text-base sm:text-lg text-white">Jangan Asal Klik “Bayar Nanti”!</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openLightbox('pinjol')" class="px-3 py-2 rounded-lg bg-stormy hover:bg-stormy/80 text-white text-xs font-semibold border border-cloud/30 transition">
+                  Perbesar
+                </button>
+                <button onclick="shareWhatsApp('Modul 1: Bijak Paylater & Pinjol - Jangan Asal Klik Bayar Nanti! Cek batas aman cicilan 30% dan legalitas OJK di portal MelekDigital Kelompok 6:')" class="px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center gap-1">
+                  <span>Sebar WA</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Infographic Container (Loads local image if placed in folder, falls back to exact styled poster) -->
+            <div id="infographic-card-pinjol" class="rounded-xl overflow-hidden border border-cloud/30 shadow-xl bg-[#F4F7FA]">
+              <img src="infografis-1-pinjol.jpg" alt="Infografis Bijak Paylater dan Pinjol Kelompok 6" class="w-full h-auto block" onerror="this.style.display='none'; document.getElementById('fallback-pinjol').classList.remove('hidden');" />
+
+              <!-- High-Fidelity Built-in Poster Replica (Shown automatically when external JPG isn't attached) -->
+              <div id="fallback-pinjol" class="hidden text-[#102542] font-sans">
+                <!-- Poster Header -->
+                <div class="bg-[#102542] text-white p-5 sm:p-6">
+                  <span class="inline-block px-3 py-1 rounded-full bg-[#243B5E] text-[#93C5FD] text-[10px] font-bold tracking-wider uppercase mb-2">MODUL LITERASI DIGITAL</span>
+                  <h4 class="font-display font-extrabold text-2xl sm:text-3xl leading-tight">JANGAN ASAL KLIK<br/><span class="text-[#F4C430]">“BAYAR NANTI”!</span></h4>
+                  <p class="text-xs sm:text-sm text-slate-200 mt-1">Paylater &amp; Pinjol Itu Utang, Bukan Uang Tambahan.</p>
+
+                  <!-- Yellow Fact Box -->
+                  <div class="mt-4 bg-[#F4C430] text-[#102542] rounded-xl p-3.5 shadow">
+                    <div class="text-[10px] font-extrabold uppercase tracking-wider mb-1.5">FAKTA DI INDONESIA</div>
+                    <div class="grid grid-cols-2 gap-3 divide-x divide-[#102542]/20">
+                      <div>
+                        <div class="font-display font-extrabold text-xl sm:text-2xl">Rp13,54 T</div>
+                        <div class="text-[11px] font-semibold leading-snug">Pembiayaan BNPL perusahaan pembiayaan (Sept 2026)</div>
+                      </div>
+                      <div class="pl-3">
+                        <div class="font-display font-extrabold text-xl sm:text-2xl text-[#B91C1C]">1.199 ENTITAS</div>
+                        <div class="text-[11px] font-semibold leading-snug">Pinjol ilegal dihentikan (Jan–Sept 2026)</div>
+                      </div>
+                    </div>
+                    <div class="text-[9px] mt-2 pt-1.5 border-t border-[#102542]/20 font-medium">
+                      Sumber: OJK, RDKB Oktober 2026; Satgas PASTI, 27 Oktober 2026.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Poster Body -->
+                <div class="p-4 sm:p-5 space-y-4">
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">3 ATURAN AMAN SEBELUM BERUTANG</h5>
+                    <p class="text-[11px] text-slate-600">Pahami kemampuan, tujuan, dan risiko sebelum menekan tombol pinjam.</p>
+                    <div class="space-y-2 mt-2.5">
+                      <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-3 shadow-sm">
+                        <span class="w-8 h-8 rounded-full bg-[#1D4ED8] text-white font-bold text-xs flex items-center justify-center shrink-0">30%</span>
+                        <div>
+                          <div class="font-bold text-xs sm:text-sm">Jaga cicilan di kisaran 30%</div>
+                          <div class="text-[11px] text-slate-600">Total cicilan sebaiknya tidak lebih dari 30% penghasilan bersih bulanan.</div>
+                        </div>
+                      </div>
+                      <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-3 shadow-sm">
+                        <span class="w-8 h-8 rounded-full bg-[#D97706] text-white font-bold text-xs flex items-center justify-center shrink-0">!</span>
+                        <div>
+                          <div class="font-bold text-xs sm:text-sm">Pakai untuk kebutuhan, bukan gaya hidup</div>
+                          <div class="text-[11px] text-slate-600">Jangan tergoda promo "0% cicilan" untuk barang yang belum penting.</div>
+                        </div>
+                      </div>
+                      <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-3 shadow-sm">
+                        <span class="w-8 h-8 rounded-full bg-[#DC2626] text-white font-bold text-xs flex items-center justify-center shrink-0">✕</span>
+                        <div>
+                          <div class="font-bold text-xs sm:text-sm">Hindari “gali lubang tutup lubang”</div>
+                          <div class="text-[11px] text-slate-600">Membayar paylater dengan pinjaman lain menambah bunga dan denda.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Comparison Table -->
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">INGAT PRINSIP 2L: LEGAL &amp; LOGIS</h5>
+                    <div class="grid grid-cols-2 gap-2 mt-2 text-[11px]">
+                      <div class="rounded-xl overflow-hidden border border-emerald-200 bg-emerald-50/70">
+                        <div class="bg-[#1E8449] text-white font-bold px-3 py-1.5">✓ LEGAL OJK</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Terdaftar &amp; diawasi OJK.</li>
+                          <li>• Kanal layanan jelas &amp; resmi.</li>
+                          <li>• Akses terbatas CAMILAN.</li>
+                          <li>• Bunga &amp; denda transparan.</li>
+                        </ul>
+                      </div>
+                      <div class="rounded-xl overflow-hidden border border-rose-200 bg-rose-50/70">
+                        <div class="bg-[#C0392B] text-white font-bold px-3 py-1.5">✕ PINJOL ILEGAL</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Tidak berizin resmi OJK.</li>
+                          <li>• Tawaran lewat SMS/WA pribadi.</li>
+                          <li>• Minta akses Kontak &amp; Galeri.</li>
+                          <li>• Bunga &amp; denda mencekik.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Official Contact Box -->
+                  <div class="bg-white rounded-xl p-3 border border-slate-300 grid grid-cols-2 gap-2 divide-x divide-slate-200">
+                    <div>
+                      <div class="text-[10px] font-bold text-[#1E8449]">WHATSAPP RESMI OJK</div>
+                      <div class="font-display font-extrabold text-sm sm:text-base text-[#102542]">081-157-157-157</div>
+                      <div class="text-[10px] text-slate-500">Jam chat: 07.45–16.50 WIB</div>
+                    </div>
+                    <div class="pl-3">
+                      <div class="text-[10px] font-bold text-[#1D4ED8]">TELEPON KONTAK OJK</div>
+                      <div class="font-display font-extrabold text-lg text-[#102542]">157</div>
+                      <div class="text-[10px] text-slate-500">Layanan 24 jam (Senin–Minggu)</div>
+                    </div>
+                  </div>
+
+                  <!-- Footer Banner -->
+                  <div class="bg-[#FEF3C7] border border-[#F59E0B] rounded-xl p-2.5 text-center">
+                    <div class="font-bold text-xs text-[#92400E]">BAGIKAN KE KELUARGA &amp; GRUP WHATSAPP!</div>
+                    <div class="text-[10px] text-[#78350F]">PROJEK KELOMPOK 6 • LITERASI DIGITAL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-cloud pt-1">
+              <span>Tips: Tekan <strong>Perbesar</strong> untuk membaca detail atau tangkap layar.</span>
+              <a href="infografis-1-pinjol.jpg" download="Infografis-1-Paylater-Pinjol-Kelompok6.jpg" onclick="handleDownloadNotice(event, 'Infografis 1 (Paylater & Pinjol)')" class="text-goldfact hover:underline font-semibold">
+                Unduh File JPG ↓
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== MODULE 2 CONTENT: LINK PHISHING & DATA ==================== -->
+      <div id="panel-phishing" class="module-panel hidden grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Column: Interactive Phishing Chat Inspector -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="glass-card rounded-2xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold">Simulasi Interaktif 2</span>
+              <span id="phishingProgressBadge" class="text-xs font-semibold text-goldfact">0 / 4 Jebakan Ditemukan</span>
+            </div>
+
+            <div>
+              <h3 class="font-display font-bold text-xl text-white">Bedah Chat Penipuan WhatsApp</h3>
+              <p class="text-sm text-slate-300 mt-1">
+                Klik <strong>4 titik tanda bahaya (berkedip merah)</strong> pada contoh pesan penipuan di bawah ini untuk mengetahui cara penipu menjebak korban.
+              </p>
+            </div>
+
+            <!-- Simulated Phone Chat Bubble -->
+            <div class="rounded-2xl bg-[#0B141A] border border-slate-700 overflow-hidden shadow-inner">
+              <!-- Fake WA Header -->
+              <div class="bg-[#202C33] px-4 py-2.5 flex items-center justify-between border-b border-slate-700">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center text-xs font-bold text-white">?</div>
+                  <div>
+                    <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <span>+62 812-9940-XXXX</span>
+                      <button onclick="inspectHotspot(1)" class="hotspot-btn px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold cursor-pointer">
+                        1 • Cek Nomor
+                      </button>
+                    </div>
+                    <div class="text-[10px] text-slate-400">Bukan akun bisnis terverifikasi</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fake WA Message Body -->
+              <div class="p-4 space-y-3 bg-[#111B21]">
+                <div class="bg-[#202C33] rounded-xl rounded-tl-none p-3.5 text-xs sm:text-sm text-slate-100 space-y-2.5 max-w-[92%] border border-slate-700/80">
+                  <p class="font-bold text-amber-300">
+                    PEMBERITAHUAN PENTING BANK &amp; EKSPEDISI!
+                  </p>
+                  <p>
+                    Rekening Anda terdeteksi perubahan tarif transaksi Rp150.000/bulan otomatis.
+                    <button onclick="inspectHotspot(2)" class="hotspot-btn inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold ml-1 cursor-pointer">
+                      2 • Kalimat Panik
+                    </button>
+                  </p>
+                  <p>
+                    Jika tidak setuju, segera batalkan lewat tautan resmi berikut dalam 1 jam:
+                    <span class="block mt-1 text-sky-400 underline break-all">http://batalkan-tarif-bank-id.xyz/login</span>
+                    <button onclick="inspectHotspot(3)" class="hotspot-btn mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold cursor-pointer">
+                      3 • Cek Alamat Link
+                    </button>
+                  </p>
+                  <!-- Fake APK Attachment -->
+                  <div class="p-2.5 rounded-lg bg-[#182229] border border-slate-600 flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-1 rounded bg-red-500/20 text-red-400 font-mono font-bold text-[11px]">.APK</span>
+                      <div>
+                        <div class="font-semibold text-xs text-white">Surat_Resi_&_Formulir.apk</div>
+                        <div class="text-[10px] text-slate-400">4.2 MB • Aplikasi Android</div>
+                      </div>
+                    </div>
+                    <button onclick="inspectHotspot(4)" class="hotspot-btn px-2 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold shrink-0 cursor-pointer">
+                      4 • Bahaya APK
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Explanation Box for Clicked Hotspot -->
+            <div id="phishingExplanationBox" class="p-4 rounded-xl bg-stormy/50 border border-cloud/30 text-xs sm:text-sm text-slate-200 leading-relaxed">
+              👆 <strong>Klik salah satu tombol merah (1–4)</strong> di atas untuk membedah ciri penipuannya!
+            </div>
+          </div>
+
+          <!-- Emergency Action Card -->
+          <div class="stormy-card rounded-2xl p-6 space-y-2">
+            <h4 class="font-display font-bold text-base text-rose-300">Terlanjur Klik File .APK Mencurigakan?</h4>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              Segera <strong>matikan koneksi internet/data seluler (Mode Pesawat)</strong>, hapus aplikasi asing tersebut di Pengaturan HP, hubungi <em>Call Center</em> resmi bank dari HP lain, dan ganti PIN/Password m-banking.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Infographic 2 Showcase -->
+        <div class="lg:col-span-6">
+          <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-xs font-bold text-rose-300 uppercase tracking-wider">Infografis Modul 2</span>
+                <h3 class="font-display font-bold text-base sm:text-lg text-white">Jangan Asal Klik Link &amp; File Asing!</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openLightbox('phishing')" class="px-3 py-2 rounded-lg bg-stormy hover:bg-stormy/80 text-white text-xs font-semibold border border-cloud/30 transition">
+                  Perbesar
+                </button>
+                <button onclick="shareWhatsApp('Modul 2: Waspada Link Phishing & File .APK Asing! Kenali ciri pesan palsu penguras saldo & data pribadi di portal MelekDigital Kelompok 6:')" class="px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">
+                  Sebar WA
+                </button>
+              </div>
+            </div>
+
+            <div id="infographic-card-phishing" class="rounded-xl overflow-hidden border border-cloud/30 shadow-xl bg-[#F4F7FA]">
+              <img src="infografis-2-phishing.jpg" alt="Infografis Bahaya Link Phishing Kelompok 6" class="w-full h-auto block" onerror="this.style.display='none'; document.getElementById('fallback-phishing').classList.remove('hidden');" />
+
+              <!-- Built-in Replica of Infographic 2 -->
+              <div id="fallback-phishing" class="hidden text-[#102542] font-sans">
+                <div class="bg-[#102542] text-white p-5 sm:p-6">
+                  <span class="inline-block px-3 py-1 rounded-full bg-[#243B5E] text-[#93C5FD] text-[10px] font-bold tracking-wider uppercase mb-2">MODUL LITERASI DIGITAL</span>
+                  <h4 class="font-display font-extrabold text-2xl sm:text-3xl leading-tight">JANGAN ASAL KLIK<br/><span class="text-[#F4C430]">LINK &amp; FILE ASING!</span></h4>
+                  <p class="text-xs sm:text-sm text-slate-200 mt-1">Sekali Terkecoh, Saldo Rekening &amp; Data Pribadi Terkuras.</p>
+
+                  <div class="mt-4 bg-[#F4C430] text-[#102542] rounded-xl p-3.5 shadow">
+                    <div class="text-[10px] font-extrabold uppercase tracking-wider mb-1.5">FAKTA DI INDONESIA</div>
+                    <div class="grid grid-cols-2 gap-3 divide-x divide-[#102542]/20">
+                      <div>
+                        <div class="font-display font-extrabold text-xl sm:text-2xl text-[#B91C1C]">432 RIBU+</div>
+                        <div class="text-[11px] font-semibold leading-snug">Laporan penipuan ke IASC (Nov 2024 – awal 2026)</div>
+                      </div>
+                      <div class="pl-3">
+                        <div class="font-display font-extrabold text-xl sm:text-2xl text-[#B91C1C]">30 RIBU+</div>
+                        <div class="text-[11px] font-semibold leading-snug">Aduan penyalahgunaan nomor seluler hingga 16 Juli 2026</div>
+                      </div>
+                    </div>
+                    <div class="text-[9px] mt-2 pt-1.5 border-t border-[#102542]/20 font-medium">
+                      Sumber: IASC dan Kemkomdigi, 2026.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 sm:p-5 space-y-4">
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">3 CARA AMAN CEGAH PENCURIAN DATA</h5>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2.5 text-center">
+                      <div class="bg-sky-50 border border-sky-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">1. Tolak file .APK</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Jangan instal file berkedok resi kurir, undangan nikah, atau tilang.</p>
+                      </div>
+                      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">2. Jaga OTP &amp; KTP</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Haram bagikan OTP, PIN, &amp; foto KTP ke siapa pun.</p>
+                      </div>
+                      <div class="bg-rose-50 border border-rose-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">3. Cek alamat situs</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Waspadai ejaan domain mirip atau tautan singkat aneh.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">PESAN RESMI VS LINK PHISHING</h5>
+                    <div class="grid grid-cols-2 gap-2 mt-2 text-[11px]">
+                      <div class="rounded-xl overflow-hidden border border-emerald-200 bg-emerald-50/70">
+                        <div class="bg-[#1E8449] text-white font-bold px-3 py-1.5">✓ PESAN RESMI</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Akun resmi terverifikasi.</li>
+                          <li>• Domain resmi lembaga/bank.</li>
+                          <li>• Informatif, tidak memaksa.</li>
+                          <li>• Tanpa file .APK lewat chat.</li>
+                        </ul>
+                      </div>
+                      <div class="rounded-xl overflow-hidden border border-rose-200 bg-rose-50/70">
+                        <div class="bg-[#C0392B] text-white font-bold px-3 py-1.5">✕ LINK PHISHING</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Nomor tak dikenal / tiruan.</li>
+                          <li>• Domain salah eja / pemendek.</li>
+                          <li>• Mengancam blokir / hadiah.</li>
+                          <li>• Melampirkan file .APK.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded-xl p-3 border border-slate-300 grid grid-cols-2 gap-2 divide-x divide-slate-200">
+                    <div>
+                      <div class="text-[10px] font-bold text-[#1D4ED8]">CEK REKENING &amp; NOMOR</div>
+                      <div class="font-display font-extrabold text-xs sm:text-sm text-[#102542]">cekrekening.id / aduannomor.id</div>
+                    </div>
+                    <div class="pl-3">
+                      <div class="text-[10px] font-bold text-[#C0392B]">DARURAT SALDO DIBOBOL</div>
+                      <div class="font-display font-extrabold text-xs sm:text-sm text-[#102542]">Call Center Resmi Bank</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-[#FEF3C7] border border-[#F59E0B] rounded-xl p-2.5 text-center">
+                    <div class="font-bold text-xs text-[#92400E]">BAGIKAN KE KELUARGA &amp; GRUP WHATSAPP!</div>
+                    <div class="text-[10px] text-[#78350F]">PROJEK KELOMPOK 6 • LITERASI DIGITAL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-cloud pt-1">
+              <span>Tips: Tekan <strong>Perbesar</strong> untuk membaca detail atau tangkap layar.</span>
+              <a href="infografis-2-phishing.jpg" download="Infografis-2-Link-Phishing-Kelompok6.jpg" onclick="handleDownloadNotice(event, 'Infografis 2 (Link Phishing)')" class="text-rose-300 hover:underline font-semibold">
+                Unduh File JPG ↓
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== MODULE 3 CONTENT: VIDEO AI & DEEPFAKE ==================== -->
+      <div id="panel-videoai" class="module-panel hidden grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Column: Interactive Deepfake Case Tester -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="glass-card rounded-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold">Simulasi Interaktif 3</span>
+              <span class="text-xs text-cloud">Uji Kejelian Saring Sebelum Sharing</span>
+            </div>
+
+            <div>
+              <h3 class="font-display font-bold text-xl text-white">Detektif Video AI: Asli atau Rekayasa?</h3>
+              <p class="text-sm text-slate-300 mt-1">
+                Pilih salah satu kasus video viral yang sering masuk grup keluarga, lalu tebak apakah video tersebut <strong>Waspada AI / Hoaks</strong> atau <strong>Terverifikasi Asli</strong>.
+              </p>
+            </div>
+
+            <!-- Case Selector Pills -->
+            <div class="flex gap-2">
+              <button onclick="loadAiCase(0)" id="aiCaseBtn0" class="ai-case-btn flex-1 py-2 px-3 rounded-lg text-xs font-bold bg-sunset text-white border border-sunset transition">Kasus 1</button>
+              <button onclick="loadAiCase(1)" id="aiCaseBtn1" class="ai-case-btn flex-1 py-2 px-3 rounded-lg text-xs font-bold bg-evening/80 text-slate-300 border border-cloud/30 hover:bg-stormy/50 transition">Kasus 2</button>
+              <button onclick="loadAiCase(2)" id="aiCaseBtn2" class="ai-case-btn flex-1 py-2 px-3 rounded-lg text-xs font-bold bg-evening/80 text-slate-300 border border-cloud/30 hover:bg-stormy/50 transition">Kasus 3</button>
+            </div>
+
+            <!-- Case Scenario Card -->
+            <div class="p-4 rounded-xl bg-evening/90 border border-cloud/30 space-y-3">
+              <div class="flex items-center gap-2 text-xs text-goldfact font-semibold">
+                <span>🎬 Skenario Video Masuk Grup WA:</span>
+              </div>
+              <p id="aiCaseDescription" class="text-sm text-white font-medium leading-relaxed">
+                Beredar video seorang pejabat tinggi negara berbicara di podium mengumumkan pembagian dana bantuan tunai Rp25 juta bagi siapa saja yang menghubungi nomor WhatsApp di deskripsi video. Gerak bibirnya tampak sedikit kaku dan suara terdengar datar tanpa jeda napas.
+              </p>
+
+              <!-- Guess Buttons -->
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="answerAiCase('ai')" class="p-3 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white text-xs sm:text-sm font-bold transition">
+                  ✕ Waspada AI / Hoaks
+                </button>
+                <button onclick="answerAiCase('real')" class="p-3 rounded-xl bg-emerald-600/80 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold transition">
+                  ✓ Terverifikasi Asli
+                </button>
+              </div>
+            </div>
+
+            <!-- Answer Feedback -->
+            <div id="aiCaseFeedback" class="hidden p-4 rounded-xl border text-xs sm:text-sm leading-relaxed"></div>
+          </div>
+
+          <!-- Checklist Card -->
+          <div class="stormy-card rounded-2xl p-6 space-y-2">
+            <h4 class="font-display font-bold text-base text-sky-300">5 Ciri Fisik Video AI (Deepfake):</h4>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              Perhatikan <strong>(1) Gerak bibir tak sinkron</strong>, <strong>(2) Kedipan mata jarang/kosong</strong>, <strong>(3) Kulit wajah terlalu mulus seperti lilin</strong>, <strong>(4) Jari tangan atau tulisan latar bengkok</strong>, dan <strong>(5) Cahaya wajah tak menyatu dengan latar</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Infographic 3 Showcase -->
+        <div class="lg:col-span-6">
+          <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">Infografis Modul 3</span>
+                <h3 class="font-display font-bold text-base sm:text-lg text-white">Ada Video Belum Tentu Fakta!</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openLightbox('videoai')" class="px-3 py-2 rounded-lg bg-stormy hover:bg-stormy/80 text-white text-xs font-semibold border border-cloud/30 transition">
+                  Perbesar
+                </button>
+                <button onclick="shareWhatsApp('Modul 3: Ada Video Belum Tentu Fakta! Waspada rekayasa video & suara AI (Deepfake) di grup WhatsApp. Cek panduannya di portal MelekDigital Kelompok 6:')" class="px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">
+                  Sebar WA
+                </button>
+              </div>
+            </div>
+
+            <div id="infographic-card-videoai" class="rounded-xl overflow-hidden border border-cloud/30 shadow-xl bg-[#F4F7FA]">
+              <img src="infografis-3-video-ai.png" alt="Infografis Cek Fakta Video AI Kelompok 6" class="w-full h-auto block" onerror="this.style.display='none'; document.getElementById('fallback-videoai').classList.remove('hidden');" />
+
+              <!-- Built-in Replica of Infographic 3 -->
+              <div id="fallback-videoai" class="hidden text-[#102542] font-sans">
+                <div class="bg-[#102542] text-white p-5 sm:p-6">
+                  <span class="inline-block px-3 py-1 rounded-full bg-[#243B5E] text-[#93C5FD] text-[10px] font-bold tracking-wider uppercase mb-2">MODUL LITERASI DIGITAL</span>
+                  <h4 class="font-display font-extrabold text-2xl sm:text-3xl leading-tight">ADA VIDEO BELUM<br/><span class="text-[#F4C430]">TENTU FAKTA!</span></h4>
+                  <p class="text-xs sm:text-sm text-slate-200 mt-1">Waspada Rekayasa Video &amp; Suara AI (Deepfake) Penyebar Hoaks.</p>
+
+                  <div class="mt-4 bg-[#F4C430] text-[#102542] rounded-xl p-3.5 shadow">
+                    <div class="text-[10px] font-extrabold uppercase tracking-wider mb-1.5">FAKTA DI INDONESIA</div>
+                    <div class="grid grid-cols-2 gap-3 divide-x divide-[#102542]/20">
+                      <div>
+                        <div class="font-display font-extrabold text-xl sm:text-2xl text-[#B91C1C]">1.593</div>
+                        <div class="text-[11px] font-semibold leading-snug">Hoaks dipetakan Mafindo (21 Okt 2024 – 19 Okt 2025)</div>
+                      </div>
+                      <div class="pl-3">
+                        <div class="font-display font-extrabold text-xl sm:text-2xl text-[#B91C1C]">58,2%</div>
+                        <div class="text-[11px] font-semibold leading-snug">Hoaks Pemilu 2024 berupa gabungan teks + video</div>
+                      </div>
+                    </div>
+                    <div class="text-[9px] mt-2 pt-1.5 border-t border-[#102542]/20 font-medium">
+                      Sumber: Mafindo, pemetaan hoaks 2024–2025 dan Pemetaan Hoaks Pemilu 2024.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 sm:p-5 space-y-4">
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">3 LANGKAH SARING SEBELUM SHARING</h5>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2.5 text-center">
+                      <div class="bg-sky-50 border border-sky-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">1. Cek fisik wajah</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Perhatikan gerak bibir, kedipan mata kaku, &amp; bentuk jari.</p>
+                      </div>
+                      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">2. Curigai janji manis</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Waspadai video bagi-bagi uang atau telepon minta transfer darurat.</p>
+                      </div>
+                      <div class="bg-rose-50 border border-rose-200 rounded-xl p-3">
+                        <div class="font-bold text-xs text-[#102542]">3. Cek berita resmi</div>
+                        <p class="text-[10px] text-slate-600 mt-1">Bandingkan dengan media arus utama sebelum forward.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h5 class="font-display font-extrabold text-sm sm:text-base text-[#102542]">VIDEO ASLI VS BUATAN AI (DEEPFAKE)</h5>
+                    <div class="grid grid-cols-2 gap-2 mt-2 text-[11px]">
+                      <div class="rounded-xl overflow-hidden border border-emerald-200 bg-emerald-50/70">
+                        <div class="bg-[#1E8449] text-white font-bold px-3 py-1.5">✓ VIDEO ASLI</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Gerak bibir &amp; napas alami.</li>
+                          <li>• Tekstur kulit &amp; cahaya menyatu.</li>
+                          <li>• Jari &amp; tulisan latar normal.</li>
+                          <li>• Diliput media massa resmi.</li>
+                        </ul>
+                      </div>
+                      <div class="rounded-xl overflow-hidden border border-rose-200 bg-rose-50/70">
+                        <div class="bg-[#C0392B] text-white font-bold px-3 py-1.5">✕ VIDEO AI (DEEPFAKE)</div>
+                        <ul class="p-2.5 space-y-1.5 text-slate-800">
+                          <li>• Bibir kaku / suara tak pas.</li>
+                          <li>• Wajah terlalu mulus seperti lilin.</li>
+                          <li>• Jari bengkok / tulisan acak.</li>
+                          <li>• Beredar berantai tanpa sumber.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded-xl p-3 border border-slate-300 grid grid-cols-2 gap-2 divide-x divide-slate-200">
+                    <div>
+                      <div class="text-[10px] font-bold text-[#1D4ED8]">PORTAL CEK FAKTA</div>
+                      <div class="font-display font-extrabold text-xs sm:text-sm text-[#102542]">turnbackhoax.id / cekfakta.com</div>
+                    </div>
+                    <div class="pl-3">
+                      <div class="text-[10px] font-bold text-[#1E8449]">CHATBOT MAFINDO</div>
+                      <div class="font-display font-extrabold text-xs sm:text-sm text-[#102542]">0859-2160-0500</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-[#FEF3C7] border border-[#F59E0B] rounded-xl p-2.5 text-center">
+                    <div class="font-bold text-xs text-[#92400E]">BAGIKAN KE KELUARGA &amp; GRUP WHATSAPP!</div>
+                    <div class="text-[10px] text-[#78350F]">PROJEK KELOMPOK 6 • LITERASI DIGITAL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-cloud pt-1">
+              <span>Tips: Tekan <strong>Perbesar</strong> untuk membaca detail atau tangkap layar.</span>
+              <a href="infografis-3-video-ai.png" download="Infografis-3-Video-AI-Kelompok6.png" onclick="handleDownloadNotice(event, 'Infografis 3 (Video AI)')" class="text-sky-300 hover:underline font-semibold">
+                Unduh File PNG ↓
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POJOK DARURAT & KANAL RESMI ==================== -->
+  <section id="pojok-darurat" class="py-12 sm:py-16 bg-evening">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-sunset">Aksi Cepat &amp; Pelaporan</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-1">Pojok Darurat &amp; Kanal Cek Fakta Resmi</h2>
+          <p class="text-sm text-slate-300 mt-1">
+            Simpan atau salin nomor layanan resmi berikut untuk mengecek legalitas pinjol, rekening penipu, dan kebenaran video viral.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- OJK Card -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-goldfact text-xs font-bold">Cek Legalitas Pinjol &amp; Paylater</span>
+            <h3 class="font-display font-bold text-lg text-white">WhatsApp &amp; Kontak OJK</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Ketik nama aplikasi pinjaman lalu kirim ke WhatsApp resmi OJK (07.45–16.50 WIB) atau hubungi layanan telepon 24 jam.
+            </p>
+          </div>
+          <div class="space-y-2 pt-2">
+            <button onclick="copyText('081157157157', 'Nomor WhatsApp OJK (081-157-157-157)')" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>WA OJK: 081-157-157-157</span>
+              <span class="text-goldfact">Salin</span>
+            </button>
+            <button onclick="copyText('157', 'Nomor Telepon OJK (157)')" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>Telepon OJK: 157</span>
+              <span class="text-goldfact">Salin</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Komdigi Card -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-300 text-xs font-bold">Cek Rekening &amp; Nomor Penipu</span>
+            <h3 class="font-display font-bold text-lg text-white">Portal Aduan Komdigi</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Periksa apakah nomor rekening tujuan transfer atau nomor telepon pengirim pesan pernah dilaporkan sebagai penipu.
+            </p>
+          </div>
+          <div class="space-y-2 pt-2">
+            <a href="https://cekrekening.id" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>cekrekening.id</span>
+              <span class="text-rose-300">Buka ↗</span>
+            </a>
+            <a href="https://aduannomor.id" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>aduannomor.id</span>
+              <span class="text-rose-300">Buka ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mafindo Card -->
+        <div class="stormy-card rounded-2xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-300 text-xs font-bold">Verifikasi Video AI &amp; Hoaks</span>
+            <h3 class="font-display font-bold text-lg text-white">Cek Fakta Mafindo</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Kirim teks atau tautan video viral yang meragukan ke Chatbot Kalimasada Mafindo atau cari di portal cek fakta nasional.
+            </p>
+          </div>
+          <div class="space-y-2 pt-2">
+            <button onclick="copyText('085921600500', 'Nomor Chatbot Mafindo (0859-2160-0500)')" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>WA Kalimasada: 0859-2160-0500</span>
+              <span class="text-sky-300">Salin</span>
+            </button>
+            <a href="https://turnbackhoax.id" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-evening hover:bg-stormy border border-cloud/30 text-xs font-bold text-white flex items-center justify-between transition">
+              <span>turnbackhoax.id</span>
+              <span class="text-sky-300">Buka ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-cloud/20 bg-[#131A26] py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <div class="font-display font-bold text-white text-base">
+          Melek<span class="text-sunset">Digital</span> • Projek Kelompok 6
+        </div>
+        <p class="text-xs text-cloud mt-1">
+          Mata Kuliah Literasi Digital — Edukasi Masyarakat Bijak Paylater, Anti-Phishing, &amp; Anti-Hoaks Video AI.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="copyCurrentUrl()" class="px-4 py-2 rounded-xl bg-stormy/50 hover:bg-stormy text-xs font-semibold text-white border border-cloud/30 transition">
+          Salin Link Website
+        </button>
+        <a href="#beranda" class="px-4 py-2 rounded-xl bg-sunset/80 hover:bg-sunset text-xs font-semibold text-white transition">
+          Ke Atas ↑
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL 1: LIGHTBOX FULLSCREEN INFOGRAPHIC ==================== -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm p-3 sm:p-6 overflow-y-auto flex items-start justify-center">
+    <div class="relative w-full max-w-xl my-auto bg-evening rounded-2xl border border-cloud/30 shadow-2xl overflow-hidden">
+      <div class="sticky top-0 z-10 bg-evening/95 px-4 py-3 border-b border-cloud/20 flex items-center justify-between">
+        <span id="lightboxTitle" class="font-display font-bold text-sm text-white">Pratinjau Infografis</span>
+        <button onclick="closeModal('lightboxModal')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold">
+          Tutup ✕
+        </button>
+      </div>
+      <div id="lightboxBody" class="p-3 sm:p-4"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: PRE-TEST / POST-TEST FIELD QUIZ ==================== -->
+  <div id="quizModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 overflow-y-auto flex items-center justify-center">
+    <div class="w-full max-w-lg bg-evening rounded-2xl border border-cloud/30 shadow-2xl overflow-hidden">
+      <div class="bg-stormy/50 px-5 py-4 border-b border-cloud/20 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-goldfact">Evaluasi Literasi Digital</span>
+          <h3 class="font-display font-bold text-lg text-white">Kuis Cek Keamanan Digitalmu</h3>
+        </div>
+        <button onclick="closeModal('quizModal')" class="p-2 rounded-lg bg-evening/80 text-slate-300 hover:text-white text-xs font-bold">✕</button>
+      </div>
+
+      <div id="quizContainer" class="p-5 sm:p-6 space-y-5">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: QR POSTER LAPANGAN ==================== -->
+  <div id="qrModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 overflow-y-auto flex items-center justify-center">
+    <div class="w-full max-w-md bg-evening rounded-2xl border border-cloud/30 shadow-2xl p-6 text-center space-y-4">
+      <div class="flex justify-between items-center border-b border-cloud/20 pb-3">
+        <span class="font-display font-bold text-sm text-white">Mode Sosialisasi Lapangan</span>
+        <button onclick="closeModal('qrModal')" class="text-xs font-bold text-slate-300 hover:text-white px-2 py-1">Tutup ✕</button>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-300">
+        Arahkan kamera HP warga untuk memindai kode QR di bawah ini agar langsung membuka portal edukasi <strong>MelekDigital Kelompok 6</strong>.
+      </p>
+
+      <!-- Clean SVG QR Vector Representation -->
+      <div class="mx-auto w-48 h-48 bg-white p-3 rounded-2xl shadow-lg flex items-center justify-center">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-[#192231]" fill="currentColor">
+          <path d="M10,10 h25 v25 h-25 z M15,15 v15 h15 v-15 z M19,19 h7 v7 h-7 z" />
+          <path d="M65,10 h25 v25 h-25 z M70,15 v15 h15 v-15 z M74,19 h7 v7 h-7 z" />
+          <path d="M10,65 h25 v25 h-25 z M15,70 v15 h15 v-15 z M19,74 h7 v7 h-7 z" />
+          <rect x="42" y="12" width="6" height="6" />
+          <rect x="52" y="18" width="6" height="12" />
+          <rect x="42" y="28" width="6" height="10" />
+          <rect x="12" y="42" width="12" height="6" />
+          <rect x="30" y="42" width="18" height="6" />
+          <rect x="54" y="42" width="12" height="6" />
+          <rect x="74" y="42" width="14" height="6" />
+          <rect x="18" y="52" width="14" height="6" />
+          <rect x="42" y="54" width="16" height="16" fill="#985E6D" />
+          <rect x="66" y="54" width="8" height="14" />
+          <rect x="80" y="52" width="8" height="18" />
+          <rect x="42" y="76" width="10" height="12" />
+          <rect x="58" y="74" width="14" height="6" />
+          <rect x="78" y="76" width="10" height="12" />
+        </svg>
+      </div>
+
+      <div class="p-3 rounded-xl bg-stormy/40 border border-cloud/30 text-xs text-slate-200 break-all" id="currentUrlText">
+        Portal Edukasi Literasi Digital • Kelompok 6
+      </div>
+
+      <button onclick="copyCurrentUrl()" class="w-full py-3 rounded-xl bg-sunset hover:bg-sunset/90 text-white text-xs sm:text-sm font-bold transition">
+        Salin Tautan Website untuk Poster
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toastNotification" class="fixed bottom-20 right-5 z-50 hidden max-w-xs sm:max-w-sm bg-stormy text-white px-4 py-3 rounded-xl shadow-2xl border border-cloud/40 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+    <span class="w-2.5 h-2.5 rounded-full bg-goldfact shrink-0"></span>
+    <span id="toastMessage">Berhasil disalin!</span>
+  </div>
+
+  <!-- ==================== FLOATING CHATBOT AI: TANYA BANG DIGI ==================== -->
+  <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <!-- Chat Window (Hidden by default) -->
+    <div id="bangDigiWindow" class="hidden mb-3 w-[calc(100vw-2.5rem)] sm:w-[390px] rounded-2xl bg-evening/95 backdrop-blur-xl border border-cloud/35 shadow-2xl overflow-hidden flex flex-col">
+      <!-- Chat Header -->
+      <div class="bg-gradient-to-r from-stormy/80 to-twilight px-4 py-3 border-b border-cloud/25 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sunset to-stormy border border-cloud/40 flex items-center justify-center font-display font-extrabold text-xs text-white shadow">
+            BD
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-white flex items-center gap-1.5">
+              <span>Tanya Bang Digi</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">AI Aktif</span>
+            </div>
+            <div class="text-[11px] text-slate-300">Asisten Literasi Digital Kelompok 6</div>
+          </div>
+        </div>
+        <button onclick="toggleBangDigi(false)" class="p-2 rounded-lg bg-evening/70 hover:bg-sunset text-slate-200 hover:text-white text-xs font-bold transition" aria-label="Tutup Chat">
+          ✕
+        </button>
+      </div>
+
+      <!-- Messages Area -->
+      <div id="bangDigiMessages" class="p-4 space-y-3 overflow-y-auto max-h-[340px] min-h-[240px] bg-[#131A26]/90 text-xs sm:text-sm">
+        <div class="flex items-start gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-sunset text-white font-display font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+            BD
+          </div>
+          <div class="bg-twilight border border-cloud/25 rounded-2xl rounded-tl-none p-3.5 text-slate-100 leading-relaxed shadow">
+            Halo warga! Saya <strong>Bang Digi</strong>, asisten AI dari <strong>Kelompok 6 Literasi Digital</strong>. 👋<br /><br />
+            Ada pesan WA mencurigakan, bingung cek pinjol resmi OJK, atau ragu sama video viral di grup? Tanya apa saja di bawah ini ya!
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Prompts -->
+      <div class="px-3.5 py-2.5 bg-evening border-t border-cloud/20">
+        <div class="text-[10px] font-semibold text-cloud mb-1.5">Pertanyaan cepat:</div>
+        <div class="flex gap-1.5 overflow-x-auto pb-1">
+          <button type="button" onclick="sendQuickDigi('Bagaimana cara cek apakah pinjol atau paylater terdaftar resmi di OJK?')" class="shrink-0 px-2.5 py-1.5 rounded-full bg-stormy/40 hover:bg-sunset text-slate-200 hover:text-white border border-cloud/30 text-[11px] font-medium transition">
+            Cek pinjol resmi OJK?
+          </button>
+          <button type="button" onclick="sendQuickDigi('Saya dapat kiriman file .APK di WhatsApp, apa bahayanya dan harus bagaimana?')" class="shrink-0 px-2.5 py-1.5 rounded-full bg-stormy/40 hover:bg-sunset text-slate-200 hover:text-white border border-cloud/30 text-[11px] font-medium transition">
+            Bahaya file .APK?
+          </button>
+          <button type="button" onclick="sendQuickDigi('Bagaimana ciri-ciri video AI deepfake agar tidak tertipu hoaks?')" class="shrink-0 px-2.5 py-1.5 rounded-full bg-stormy/40 hover:bg-sunset text-slate-200 hover:text-white border border-cloud/30 text-[11px] font-medium transition">
+            Ciri video AI deepfake?
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form onsubmit="handleBangDigiSubmit(event)" class="p-3 bg-evening border-t border-cloud/25 flex items-center gap-2">
+        <input type="text" id="bangDigiInput" autocomplete="off" placeholder="Ketik pertanyaan Anda..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-twilight border border-cloud/35 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-sunset" />
+        <button type="submit" id="bangDigiSendBtn" class="p-2.5 rounded-xl bg-sunset hover:bg-sunset/90 text-white transition shrink-0 shadow" aria-label="Kirim">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Floating Trigger Icon Button -->
+    <button onclick="toggleBangDigi()" class="px-4 py-3 rounded-full bg-gradient-to-r from-sunset via-stormy to-evening hover:opacity-95 text-white font-display font-bold text-xs sm:text-sm shadow-2xl border border-cloud/40 flex items-center gap-2.5 transition transform hover:scale-105 active:scale-95" title="Tanya Bang Digi (AI)">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-goldfact opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-goldfact"></span>
+      </span>
+      <svg class="w-4 h-4 text-goldfact" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+      </svg>
+      <span>Tanya Bang Digi</span>
+    </button>
+  </div>
+
+  <!-- ==================== JAVASCRIPT INTERACTIVITY ==================== -->
+  <script>
+    // 1. Module Tab Switcher
+    function selectModule(moduleKey, shouldScroll) {
+      const modules = ['pinjol', 'phishing', 'videoai'];
+      modules.forEach((key) => {
+        const panel = document.getElementById('panel-' + key);
+        const tab = document.getElementById('tab-' + key);
+        if (key === moduleKey) {
+          panel.classList.remove('hidden');
+          tab.className = 'module-tab p-3.5 rounded-xl font-display font-bold text-sm sm:text-base border transition flex items-center justify-center gap-2 bg-sunset text-white border-sunset shadow-lg';
+        } else {
+          panel.classList.add('hidden');
+          tab.className = 'module-tab p-3.5 rounded-xl font-display font-bold text-sm sm:text-base border transition flex items-center justify-center gap-2 bg-stormy/40 text-slate-300 border-cloud/30 hover:bg-stormy/70';
+        }
+      });
+
+      if (shouldScroll) {
+        document.getElementById('modul-edukasi').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 2. Module 1: Paylater & Debt 30% Ratio Calculator
+    function formatRupiah(num) {
+      return 'Rp ' + Number(num).toLocaleString('id-ID');
+    }
+
+    function calculateDebt() {
+      const income = Number(document.getElementById('incomeRange').value);
+      const debt = Number(document.getElementById('debtRange').value);
+      const maxSafe = Math.round(income * 0.3);
+      const ratio = ((debt / income) * 100).toFixed(1);
+
+      document.getElementById('incomeDisplay').textContent = formatRupiah(income);
+      document.getElementById('debtDisplay').textContent = formatRupiah(debt);
+      document.getElementById('maxSafeDisplay').textContent = formatRupiah(maxSafe);
+
+      const box = document.getElementById('debtResultBox');
+      const badge = document.getElementById('debtStatusBadge');
+      const advice = document.getElementById('debtAdviceText');
+
+      if (debt <= maxSafe) {
+        box.className = 'p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 space-y-2';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300';
+        badge.textContent = `ZONA AMAN (${ratio}%)`;
+        advice.textContent = 'Cicilanmu masih di bawah batas maksimal 30%. Tetap gunakan paylater hanya untuk kebutuhan mendesak dan hindari telat bayar.';
+      } else if (ratio <= 45) {
+        box.className = 'p-4 rounded-xl bg-amber-950/60 border border-amber-500/40 space-y-2';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300';
+        badge.textContent = `WASPADA (${ratio}%)`;
+        advice.textContent = 'Cicilan sudah melewati batas aman 30%! Tunda belanja konsumtif dengan paylater dan prioritaskan melunasi tagihan yang ada.';
+      } else {
+        box.className = 'p-4 rounded-xl bg-rose-950/70 border border-rose-500/50 space-y-2';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300';
+        badge.textContent = `ZONA BAHAYA (${ratio}%)`;
+        advice.textContent = 'Rasio utang sangat berat! Jangan pernah mengambil pinjol baru untuk menutup cicilan lama (gali lubang tutup lubang).';
+      }
+    }
+
+    // 3. Module 2: Phishing Chat Hotspot Inspector
+    const discoveredHotspots = new Set();
+    const hotspotNotes = {
+      1: '<strong>1. Nomor Pribadi Tak Dikenal:</strong> Instansi resmi atau bank tidak pernah mengirim pemberitahuan perubahan tarif lewat nomor HP biasa tanpa centang verifikasi resmi.',
+      2: '<strong>2. Kalimat Mendesak & Memicu Panik:</strong> Penipu sengaja mengancam pemotongan saldo Rp150.000 dalam 1 jam agar korban panik dan tidak sempat berpikir jernih.',
+      3: '<strong>3. Alamat Link Palsu (.xyz):</strong> Perhatikan akhirannya memakai domain murah <code>.xyz</code>, bukan domain resmi bank di Indonesia (<code>.co.id</code> / <code>.id</code>).',
+      4: '<strong>4. File Lampiran .APK Berbahaya:</strong> File berekstensi <code>.apk</code> adalah aplikasi pemasang perangkat lunak yang bisa mencuri SMS OTP m-banking secara diam-diam!'
+    };
+
+    function inspectHotspot(id) {
+      discoveredHotspots.add(id);
+      const box = document.getElementById('phishingExplanationBox');
+      box.className = 'p-4 rounded-xl bg-rose-950/60 border border-rose-500/40 text-xs sm:text-sm text-slate-100 leading-relaxed';
+      box.innerHTML = hotspotNotes[id];
+
+      const badge = document.getElementById('phishingProgressBadge');
+      badge.textContent = `${discoveredHotspots.size} / 4 Jebakan Ditemukan`;
+      if (discoveredHotspots.size === 4) {
+        badge.textContent = '✓ 4 / 4 Jebakan Teridentifikasi!';
+        badge.className = 'text-xs font-bold text-emerald-400';
+      }
+    }
+
+    // 4. Module 3: Video AI (Deepfake) Case Tester
+    const aiCases = [
+      {
+        desc: 'Beredar video seorang pejabat tinggi negara berbicara di podium mengumumkan pembagian dana bantuan tunai Rp25 juta bagi siapa saja yang menghubungi nomor WhatsApp di deskripsi video. Gerak bibirnya tampak sedikit kaku dan suara terdengar datar tanpa jeda napas.',
+        correct: 'ai',
+        explanation: '<strong>Tepat! Ini ciri khas Video AI (Deepfake).</strong> Penipu memakai wajah dan suara tokoh publik untuk menjanjikan uang mudah. Gerak bibir yang kaku, suara tanpa napas alami, serta arahan menghubungi nomor WA pribadi adalah tanda kuat penipuan.'
+      },
+      {
+        desc: 'Seseorang menelepon lewat WhatsApp dengan suara yang persis mirip anggota keluarga, mengaku baru saja mengalami kecelakaan ringan dan meminta transfer uang Rp2 juta segera ke rekening teman karena HP-nya rusak.',
+        correct: 'ai',
+        explanation: '<strong>Waspada! Ini modus Voice Cloning AI.</strong> AI kini bisa meniru suara seseorang hanya dari sampel rekaman beberapa detik. Langkah aman: segera tutup telepon tersebut, lalu hubungi nomor asli anggota keluarga yang bersangkutan untuk memastikan.'
+      },
+      {
+        desc: 'Video liputan bencana banjir di suatu daerah diunggah oleh kanal berita televisi nasional terverifikasi, dilengkapi wawancara warga setempat dengan pencahayaan alami, gerakan alami, dan berita yang sama juga dimuat di situs media resmi.',
+        correct: 'real',
+        explanation: '<strong>Benar, ini video jurnalistik asli.</strong> Selain detail visual dan pencahayaan yang alami, kebenarannya terkonfirmasi karena berasal dari kanal resmi terverifikasi dan diliput oleh media arus utama.'
+      }
+    ];
+    let currentAiCase = 0;
+
+    function loadAiCase(index) {
+      currentAiCase = index;
+      document.getElementById('aiCaseDescription').textContent = aiCases[index].desc;
+      const fb = document.getElementById('aiCaseFeedback');
+      fb.classList.add('hidden');
+
+      [0, 1, 2].forEach((i) => {
+        const btn = document.getElementById('aiCaseBtn' + i);
+        if (i === index) {
+          btn.className = 'ai-case-btn flex-1 py-2 px-3 rounded-lg text-xs font-bold bg-sunset text-white border border-sunset transition';
+        } else {
+          btn.className = 'ai-case-btn flex-1 py-2 px-3 rounded-lg text-xs font-bold bg-evening/80 text-slate-300 border border-cloud/30 hover:bg-stormy/50 transition';
+        }
+      });
+    }
+
+    function answerAiCase(choice) {
+      const item = aiCases[currentAiCase];
+      const fb = document.getElementById('aiCaseFeedback');
+      fb.classList.remove('hidden');
+
+      if (choice === item.correct) {
+        fb.className = 'p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-xs sm:text-sm text-emerald-100 leading-relaxed';
+        fb.innerHTML = '✅ ' + item.explanation;
+      } else {
+        fb.className = 'p-4 rounded-xl bg-amber-950/70 border border-amber-500/40 text-xs sm:text-sm text-amber-100 leading-relaxed';
+        fb.innerHTML = '⚠️ Kurang tepat. ' + item.explanation;
+      }
+    }
+
+    // 5. Lightbox Viewer for Infographics
+    function openLightbox(key) {
+      const titles = {
+        pinjol: 'Modul 1 • Bijak Paylater & Pinjol',
+        phishing: 'Modul 2 • Waspada Link Phishing & Pencurian Data',
+        videoai: 'Modul 3 • Cek Fakta Video AI (Deepfake)'
+      };
+      document.getElementById('lightboxTitle').textContent = titles[key];
+      const sourceNode = document.getElementById('infographic-card-' + key).cloneNode(true);
+      sourceNode.id = '';
+      const body = document.getElementById('lightboxBody');
+      body.innerHTML = '';
+      body.appendChild(sourceNode);
+      openModal('lightboxModal');
+    }
+
+    // 6. Interactive 5-Question Field Evaluation Quiz
+    const quizQuestions = [
+      {
+        q: '1. Berapa batas maksimal aman total cicilan paylater atau pinjaman per bulan dibanding penghasilan bersih?',
+        options: ['Maksimal 30%', 'Maksimal 60%', 'Bebas asal bisa bayar minimum'],
+        answer: 0
+      },
+      {
+        q: '2. Aplikasi pinjaman online yang legal dan diawasi OJK hanya diizinkan mengakses fitur HP berupa...',
+        options: ['Kontak, Galeri Foto, dan SMS', 'Camera, Microphone, dan Location (CAMILAN)', 'Semua file penyimpanan HP'],
+        answer: 1
+      },
+      {
+        q: '3. Kamu menerima pesan WhatsApp dari nomor tak dikenal berisi file "Undangan_Pernikahan.apk". Apa tindakan paling aman?',
+        options: ['Langsung instal untuk melihat pengirimnya', 'Teruskan ke grup keluarga agar dicek bersama', 'Jangan diklik/diinstal, langsung hapus dan blokir nomornya'],
+        answer: 2
+      },
+      {
+        q: '4. Mana ciri fisik yang sering muncul pada video rekayasa AI (Deepfake)?',
+        options: ['Gerak bibir kaku tak sinkron dengan suara & kulit terlalu mulus seperti lilin', 'Video diunggah oleh akun berita resmi bercentang', 'Pencahayaan wajah menyatu alami dengan bayangan sekitar'],
+        answer: 0
+      },
+      {
+        q: '5. Ke mana warga bisa mengecek legalitas pinjol lewat WhatsApp resmi OJK?',
+        options: ['081-157-157-157', '0800-123-456', 'Nomor pribadi yang mengirim SMS tawaran'],
+        answer: 0
+      }
+    ];
+    let quizStep = 0;
+    let quizScore = 0;
+
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      if (quizStep >= quizQuestions.length) {
+        const percent = Math.round((quizScore / quizQuestions.length) * 100);
+        const level = quizScore >= 4 ? 'Warga Siaga Digital 🌟' : 'Perlu Cek Ulang Modul 📚';
+        container.innerHTML = `
+          <div class="text-center space-y-4 py-2">
+            <div class="inline-block px-3.5 py-1 rounded-full bg-goldfact/20 text-goldfact text-xs font-bold">${level}</div>
+            <div class="font-display font-extrabold text-4xl text-white">${quizScore} / ${quizQuestions.length}</div>
+            <p class="text-sm text-slate-300">
+              Skor literasi digitalmu adalah <strong>${percent}%</strong>. Bagikan edukasi ini kepada keluarga agar terhindar dari pinjol ilegal, phishing, dan hoaks AI.
+            </p>
+            <div class="flex gap-3 pt-2">
+              <button onclick="resetQuiz()" class="flex-1 py-2.5 rounded-xl bg-stormy hover:bg-stormy/80 text-white text-xs font-bold border border-cloud/30">Ulangi Kuis</button>
+              <button onclick="closeModal('quizModal')" class="flex-1 py-2.5 rounded-xl bg-sunset hover:bg-sunset/90 text-white text-xs font-bold">Selesai</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const item = quizQuestions[quizStep];
+      const optionsHtml = item.options
+        .map(
+          (opt, idx) => `
+          <button onclick="submitQuizAnswer(${idx})" class="w-full text-left p-3.5 rounded-xl bg-stormy/40 hover:bg-sunset/80 border border-cloud/30 text-xs sm:text-sm text-white font-medium transition">
+            ${opt}
+          </button>
+        `
+        )
+        .join('');
+
+      container.innerHTML = `
+        <div class="flex justify-between text-xs text-cloud">
+          <span>Pertanyaan ${quizStep + 1} dari ${quizQuestions.length}</span>
+          <span>Skor Sementara: ${quizScore}</span>
+        </div>
+        <h4 class="font-display font-bold text-base text-white leading-snug">${item.q}</h4>
+        <div class="space-y-2.5">${optionsHtml}</div>
+      `;
+    }
+
+    function submitQuizAnswer(selectedIdx) {
+      if (selectedIdx === quizQuestions[quizStep].answer) {
+        quizScore++;
+        showToast('Jawaban Benar! +1 Poin');
+      } else {
+        showToast('Kurang tepat, pelajari lagi di infografis ya!');
+      }
+      quizStep++;
+      renderQuiz();
+    }
+
+    function resetQuiz() {
+      quizStep = 0;
+      quizScore = 0;
+      renderQuiz();
+    }
+
+    // 7. Utility Helpers (Modals, Clipboard, WhatsApp Share, Toast)
+    function openModal(id) {
+      if (id === 'quizModal') {
+        resetQuiz();
+      }
+      if (id === 'qrModal') {
+        const urlEl = document.getElementById('currentUrlText');
+        if (window.location.href && !window.location.href.startsWith('about:')) {
+          urlEl.textContent = window.location.href;
+        }
+      }
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function copyText(text, label) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(label + ' berhasil disalin!');
+      } catch (err) {
+        showToast('Silakan salin manual: ' + text);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function copyCurrentUrl() {
+      const link = window.location.href && !window.location.href.startsWith('about:')
+        ? window.location.href
+        : 'https://melekdigital-kelompok6.id';
+      copyText(link, 'Tautan website');
+    }
+
+    function shareWhatsApp(message) {
+      const link = window.location.href && !window.location.href.startsWith('about:')
+        ? window.location.href
+        : '';
+      const fullText = encodeURIComponent(message + (link ? ' ' + link : ''));
+      window.open('https://wa.me/?text=' + fullText, '_blank', 'noopener,noreferrer');
+    }
+
+    function handleDownloadNotice(event, title) {
+      // If local file is not present in preview environment, prevent broken download and guide user
+      const imgEl = event.target.closest('.glass-card').querySelector('img');
+      if (imgEl && imgEl.style.display === 'none') {
+        event.preventDefault();
+        showToast('Letakkan file gambar JPG/PNG di folder yang sama dengan index.html untuk unduhan langsung.');
+      } else {
+        showToast('Mengunduh ' + title + '...');
+      }
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3200);
+    }
+
+    // 8. Chatbot AI "Tanya Bang Digi" (Cloudflare Worker Integration)
+    const BANG_DIGI_WORKER_URL = 'https://bang-digi-ai.killerdays55.workers.dev';
+    let isBangDigiOpen = false;
+    let isBangDigiLoading = false;
+
+    function toggleBangDigi(forceState) {
+      const win = document.getElementById('bangDigiWindow');
+      isBangDigiOpen = typeof forceState === 'boolean' ? forceState : !isBangDigiOpen;
+      if (isBangDigiOpen) {
+        win.classList.remove('hidden');
+        setTimeout(() => document.getElementById('bangDigiInput').focus(), 100);
+      } else {
+        win.classList.add('hidden');
+      }
+    }
+
+    function formatDigiReply(text) {
+      let safe = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong class="text-goldfact font-semibold">$1</strong>');
+      safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      safe = safe.replace(/^[\-\*]\s+(.+)$/gm, '<div class="flex items-start gap-1.5 my-1"><span class="text-sunset font-bold">•</span><span>$1</span></div>');
+      safe = safe.replace(/\n/g, '<br>');
+      return safe;
+    }
+
+    function addDigiUserMessage(text) {
+      const box = document.getElementById('bangDigiMessages');
+      const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const div = document.createElement('div');
+      div.className = 'flex justify-end';
+      div.innerHTML = `<div class="bg-sunset text-white rounded-2xl rounded-tr-none px-3.5 py-2.5 max-w-[85%] shadow leading-relaxed">${escaped}</div>`;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function addDigiTyping() {
+      const box = document.getElementById('bangDigiMessages');
+      const div = document.createElement('div');
+      div.id = 'bangDigiTypingIndicator';
+      div.className = 'flex items-start gap-2.5';
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-lg bg-sunset text-white font-display font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">BD</div>
+        <div class="bg-twilight border border-cloud/25 rounded-2xl rounded-tl-none px-3.5 py-2.5 text-slate-300 flex items-center gap-2">
+          <span class="text-xs">Bang Digi mengetik</span>
+          <span class="flex gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-goldfact digi-dot"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-goldfact digi-dot"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-goldfact digi-dot"></span>
+          </span>
+        </div>
+      `;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function removeDigiTyping() {
+      const el = document.getElementById('bangDigiTypingIndicator');
+      if (el) el.remove();
+    }
+
+    function addDigiBotMessage(reply, isError = false) {
+      const box = document.getElementById('bangDigiMessages');
+      const div = document.createElement('div');
+      div.className = 'flex items-start gap-2.5';
+      const content = isError ? `<span class="text-rose-300">${reply}</span>` : formatDigiReply(reply);
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-lg bg-sunset text-white font-display font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">BD</div>
+        <div class="bg-twilight border ${isError ? 'border-rose-500/40' : 'border-cloud/25'} rounded-2xl rounded-tl-none p-3.5 text-slate-100 leading-relaxed max-w-[85%] shadow">${content}</div>
+      `;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    async function askBangDigi(message) {
+      if (!message.trim() || isBangDigiLoading) return;
+      isBangDigiLoading = true;
+      const btn = document.getElementById('bangDigiSendBtn');
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+
+      addDigiUserMessage(message);
+      addDigiTyping();
+
+      try {
+        const res = await fetch(BANG_DIGI_WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        removeDigiTyping();
+        addDigiBotMessage(data.reply || 'Maaf, coba ulangi pertanyaan Anda ya!', false);
+      } catch (err) {
+        removeDigiTyping();
+        addDigiBotMessage('Koneksi ke server AI Bang Digi sedang terganggu. Pastikan internet aktif dan coba lagi ya!', true);
+      } finally {
+        isBangDigiLoading = false;
+        btn.disabled = false;
+        btn.classList.remove('opacity-50');
+      }
+    }
+
+    function handleBangDigiSubmit(event) {
+      event.preventDefault();
+      const input = document.getElementById('bangDigiInput');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      askBangDigi(text);
+    }
+
+    function sendQuickDigi(promptText) {
+      if (!isBangDigiOpen) toggleBangDigi(true);
+      askBangDigi(promptText);
+    }
+
+    // Initialize default state on load
+    window.onload = function () {
+      calculateDebt();
+    };
+  </script>
+</body>
+</html>
